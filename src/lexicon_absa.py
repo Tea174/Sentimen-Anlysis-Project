@@ -22,8 +22,8 @@ class LexiconABSA(AspectExtractionMixin, ABSAAnalyzer):
         # extract raw candidates
         candidates = self._extract_aspects(doc)  # From mixin
 
-        # try merging candidates that appear together with "and" / "," FIRST
-        merged = self._merge_coordinated_aspects(candidates, doc, text)
+        # try merging candidates that appear together with "and" / ","
+        merged = self._merge_coordinated_aspects(candidates, doc, text)  # From mixin
 
         # THEN normalize & dedupe
         normalized = []
@@ -44,80 +44,6 @@ class LexiconABSA(AspectExtractionMixin, ABSAAnalyzer):
                 results.append(sentiment_info)
 
         return results
-
-    # -----------------------
-    # Merge coordinated aspects (Lexicon-specific)
-    # -----------------------
-    def _merge_coordinated_aspects(self, aspects, doc, raw_text):
-        """Merge adjacent aspects connected by 'and'/',' into single phrases."""
-        if not aspects:
-            return []
-
-        items = []
-        for a in aspects:
-            items.append((self._get_start_char(a), self._get_end_char(a), a))
-
-        items.sort(key=lambda x: x[0])
-
-        merged = []
-        skip_next = False
-
-        for i in range(len(items)):
-            if skip_next:
-                skip_next = False
-                continue
-
-            start_i, end_i, a_i = items[i]
-            merged_flag = False
-
-            if i + 1 < len(items):
-                start_j, end_j, a_j = items[i + 1]
-                mid_sub = raw_text[end_i:start_j].lower()
-
-                if re.search(r'\b(and|,|&)\b', mid_sub) and len(mid_sub) < 10:
-                    candidate = raw_text[start_i:end_j].strip()
-                    candidate_norm = self._normalize_aspect(candidate)
-
-                    single_i = self._normalize_aspect(self._get_text(a_i)).lower()
-                    single_j = self._normalize_aspect(self._get_text(a_j)).lower()
-
-                    if (single_i in candidate_norm.lower() and
-                            single_j in candidate_norm.lower() and
-                            len(candidate_norm) > max(len(single_i), len(single_j))):
-
-                        try:
-                            token_start = None
-                            token_end = None
-                            for tok in doc:
-                                if tok.idx >= start_i and token_start is None:
-                                    token_start = tok.i
-                                if tok.idx + len(tok.text) <= end_j:
-                                    token_end = tok.i + 1
-
-                            if token_start is not None and token_end is not None and token_end > token_start:
-                                span = doc[token_start:token_end]
-                                merged.append(span)
-                                merged_flag = True
-                                skip_next = True
-                        except Exception:
-                            merged.append(self.nlp(candidate_norm))
-                            merged_flag = True
-                            skip_next = True
-
-            if not merged_flag:
-                merged.append(a_i)
-
-        final = []
-        seen_exact = set()
-
-        for a in merged:
-            norm = self._normalize_aspect(self._get_text(a)).lower()
-            if norm in seen_exact:
-                continue
-            seen_exact.add(norm)
-            final.append(a)
-
-        return final
 
     # -----------------------
     # Sentiment extraction (Lexicon-specific)

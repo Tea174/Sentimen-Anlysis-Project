@@ -1,5 +1,7 @@
 
 # Test Implementation 2 - Pre-trained Model
+import sys
+sys.path.insert(0, '.')
 from src.transformer_absa import TransformerABSA
 def test_transformer_absa():
     analyzer = TransformerABSA()

@@ -2,6 +2,8 @@
 
 
 # Test Implementation 3 - LLM with Ollama
+import sys
+sys.path.insert(0, '.')
 from src.llm_absa import LLMABSA
 def test_llm_absa():
     analyzer = LLMABSA()

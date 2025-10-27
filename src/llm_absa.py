@@ -1,6 +1,8 @@
 import ollama
 import json
 from typing import List
+import sys
+sys.path.insert(0, '.')
 from src.base import ABSAAnalyzer, AspectSentiment
 
 

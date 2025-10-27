@@ -15,8 +15,6 @@ class AspectSentiment:
         return f"Aspect: '{self.aspect}' → Sentiment: {self.sentiment.upper()} (confidence: {self.confidence:.2f})"
 
 class ABSAAnalyzer(ABC):
-    """Base class/interface for all ABSA implementations"""
-
     @abstractmethod
     def analyze(self, text: str) -> List[AspectSentiment]:
         """

@@ -1,4 +1,6 @@
 # testing Implementation 1 - Lexicon-Based with spaCy
+import sys
+sys.path.insert(0, '.')
 from src.lexicon_absa import LexiconABSA
 def test_lexicon_absa():
     analyzer = LexiconABSA()

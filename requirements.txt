@@ -1,0 +1,11 @@
+spacy>=3.0.0
+vaderSentiment
+transformers>=4.30.0
+torch>=2.0.0
+ollama
+pandas
+numpy
+pytest
+jupyter
+protobuf
+sentencepiece

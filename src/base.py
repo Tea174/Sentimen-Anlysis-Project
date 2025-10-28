@@ -166,19 +166,19 @@ class ABSAAnalyzer(ABC):
         print(f"  Avg time per text: {metrics['speed']['avg_time_per_text']:.4f}s")
         print(f"  Throughput: {metrics['speed']['throughput_texts_per_second']:.2f} texts/sec")
 
-        print("\n🎯 ASPECTS DETECTED")
+        print("\n ASPECTS DETECTED")
         print(f"  Mean: {metrics['aspects_detected']['mean']:.2f}")
         print(f"  Median: {metrics['aspects_detected']['median']:.2f}")
         print(f"  Std Dev: {metrics['aspects_detected']['std']:.2f}")
         print(f"  Range: [{metrics['aspects_detected']['min']}, {metrics['aspects_detected']['max']}]")
         print(f"  Total: {metrics['aspects_detected']['total']}")
 
-        print("\n💯 CONFIDENCE METRICS")
+        print("\n CONFIDENCE METRICS")
         print(f"  Avg confidence: {metrics['avg_confidence']['avg']:.4f}")
         print(f"  Range: [{metrics['avg_confidence']['min']:.4f}, {metrics['avg_confidence']['max']:.4f}]")
         print(f"  Std Dev: {metrics['avg_confidence']['std']:.4f}")
 
-        print("\n💾 MEMORY USAGE")
+        print("\n MEMORY USAGE")
         print(f"  Peak memory: {metrics['memory_usage']['peak_memory_mb']:.4f} MB")
         print(f"  Avg per text: {metrics['memory_usage']['avg_memory_per_text_mb']:.4f} MB")
 

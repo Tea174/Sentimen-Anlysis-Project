@@ -20,7 +20,7 @@ class LexiconABSA(AspectExtractionMixin, ABSAAnalyzer):
         doc = self.nlp(text)
 
         # extract raw candidates
-        candidates = self._extract_aspects(doc)  # From mixin
+        candidates = self._extract_aspects(doc)
 
         # try merging candidates that appear together with "and" / ","
         merged = self._merge_coordinated_aspects(candidates, doc, text)  # From mixin

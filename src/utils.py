@@ -45,7 +45,7 @@ class AspectExtractionMixin:
         if len(normalized) <= 2:
             return False
 
-        # Comprehensive filler terms - EXPANDED
+        # Comprehensive filler terms - 
         filler_terms = {
             # Generic/vague
             'thing', 'things', 'bit', 'lot', 'way', 'ways', 'part', 'parts', 'sort', 'yum', 'overrun',
@@ -60,7 +60,7 @@ class AspectExtractionMixin:
             'moment', 'moments', 'instance', 'instances', 'case', 'cases', 'point', 'points',
             'fact', 'facts', 'reason', 'reasons', 'result', 'results', 'issue', 'issues',
 
-            # People/relationships - EXPANDED
+            # People/relationships - 
             'husband', 'wife', 'son', 'daughter', 'child', 'children', 'kid', 'kids',
             'girl', 'girls', 'boy', 'boys', 'girlfriend', 'boyfriend', 'partner', 'partners',
             'friends', 'friend', 'buddy', 'buddies', 'pal', 'pals', 'mate', 'mates',
@@ -78,7 +78,7 @@ class AspectExtractionMixin:
             'chef', 'chefs', 'cook', 'cooks', 'family', 'families', 'relative', 'relatives',
             'neighbor', 'neighbors', 'guest', 'guests', 'visitor', 'visitors',
 
-            # Places/locations - EXPANDED
+            # Places/locations - 
             'side', 'urbana', 'monticello', 'westville', 'cu area', 'cu', 'area',
             'far side', 'town', 'towns', 'city', 'cities', 'barn', 'dairy', 'sages', 'sidney',
             'champaign', 'fields', 'field', 'corn fields', 'window', 'windows',
@@ -97,7 +97,7 @@ class AspectExtractionMixin:
             'venue', 'venues', 'spot', 'spots', 'joint', 'joints',
             'establishment', 'establishments', 'place', 'places',
 
-            # Temporal/possession - EXPANDED
+            # Temporal/possession - 
             'tolerance', 'season', 'seasons', 'years', 'year', 'minutes', 'minute', 'mins', 'min',
             'seconds', 'second', 'hours', 'hour', 'hrs', 'hr',
             'sweetness tolerance', 'fall season special', 'same ownership', 'ownership',
@@ -109,7 +109,7 @@ class AspectExtractionMixin:
             'today', 'tomorrow', 'yesterday', 'tonight', 'now', 'then', 'later',
             'earlier', 'soon', 'recently', 'lately', 'currently', 'presently',
 
-            # Abstract terms that aren't aspects - EXPANDED
+            # Abstract terms that aren't aspects - 
             'favorite', 'favorites', 'sweetness', 'bitterness', 'sourness',
             'special', 'specials', 'feature', 'features', 'highlight', 'highlights',
             'lowlight', 'lowlights', 'aspect', 'aspects', 'quality', 'qualities',
@@ -120,7 +120,7 @@ class AspectExtractionMixin:
             'ice', 'cream', 'cone', 'cones', 'swirl', 'swirls', 'scoop', 'scoops',
             'cup', 'cups', 'bowl', 'bowls', 'dish', 'dishes', 'serving', 'servings',
 
-            # Abstract/meta - EXPANDED
+            # Abstract/meta - 
             'line', 'lines', 'entire line', 'product', 'products', 'menu item', 'menu items',
             'facebook', 'page', 'pages', 'post', 'posts', 'business', 'businesses',
             'franchises', 'franchise', 'factory', 'factories', 'gems', 'gem',
@@ -129,14 +129,14 @@ class AspectExtractionMixin:
             'outing', 'outings', 'adventure', 'adventures', 'expedition', 'expeditions',
             'stop', 'stops', 'destination', 'destinations', 'tour', 'tours',
 
-            # Comparatives/references - EXPANDED
+            # Comparatives/references - 
             'bread', 'sliced bread', 'custard', 'world', 'worlds', 'bomb', 'bombs',
             'miss', 'deal', 'deals', 'bargain', 'bargains', 'steal', 'steals',
             'complaint', 'complaints', 'critique', 'critiques', 'criticism', 'criticisms',
             'sign', 'signs', 'neon sign', 'banner', 'banners', 'poster', 'posters',
             'comparison', 'comparisons', 'reference', 'references', 'example', 'examples',
 
-            # Health/body/personal - EXPANDED
+            # Health/body/personal - 
             'stomach', 'stomachs', 'ache', 'aches', 'pain', 'pains', 'hurt', 'hurts',
             'home', 'homes', 'house', 'houses', 'apartment', 'apartments',
             'experience', 'experiences', 'problem', 'problems', 'life', 'lives',
@@ -156,13 +156,13 @@ class AspectExtractionMixin:
             'perspective', 'perspectives', 'feeling', 'feelings', 'emotion', 'emotions',
             'mood', 'moods', 'vibe', 'vibes', 'energy', 'aura',
 
-            # Competitors/brands - EXPANDED
+            # Competitors/brands - 
             'baskin robbins', 'baskin', 'robbins', 'jarlings', 'custard cup',
             'rewind', 'blizzard', 'blizzards', 'dripps', 'dripp',
             'mcdonalds', 'starbucks', 'dunkin', 'krispy kreme',
             'ben jerry', 'haagen dazs', 'cold stone', 'marble slab',
 
-            # Additional context words - EXPANDED
+            # Additional context words - 
             'wait', 'waits', 'waiting', 'any time', 'anytime', 'sometime',
             'tornado', 'tornadoes', 'storm', 'storms', 'weather',
             'update', 'updates', 'news', 'information', 'info', 'data',
@@ -267,7 +267,7 @@ class AspectExtractionMixin:
         if normalized in filler_terms:
             return False
 
-        # Filter ingredients when standalone - EXPANDED
+        # Filter ingredients when standalone - 
         ingredient_terms = {
             'bananas', 'banana', 'graham', 'crackers', 'graham crackers',
             'pecans', 'pecan', 'peanuts', 'peanut', 'nuts', 'nut',
@@ -349,7 +349,7 @@ class AspectExtractionMixin:
         if any(term in normalized for term in problematic_terms):
             return False
 
-        # Filter temporal/seasonal/descriptive phrases - EXPANDED
+        # Filter temporal/seasonal/descriptive phrases - 
         if any(normalized.startswith(prefix) for prefix in [
             'fall ', 'winter ', 'spring ', 'summer ', 'autumn ',
             'season ', 'seasonal ', 'special ', 'rotating ', 'featured ',
@@ -370,7 +370,7 @@ class AspectExtractionMixin:
         if normalized.startswith('what'):
             return False
 
-        # Filter numeric/time/price expressions - EXPANDED
+        # Filter numeric/time/price expressions - 
         if re.search(
                 r'(\d+\s*(minute|min|hour|hr|day|week|month|year|mile|km|star|dollar|\$|%|ft|meter|m|cm|inch|in|lb|oz|kg|g)|1970s|1980s|1990s|2000s|50%|75%|25%|30mins|5stars)',
                 normalized, re.IGNORECASE):
@@ -380,7 +380,7 @@ class AspectExtractionMixin:
         if self._get_pos(aspect) == 'ADJ' and len(normalized.split()) == 1:
             return False
 
-        # Filter proper nouns that are locations or brand names - EXPANDED
+        # Filter proper nouns that are locations or brand names - 
         if self._get_pos(aspect) == 'PROPN':
             filtered_names = {
                 'urbana', 'monticello', 'westville', 'champaign', 'sidney',
@@ -428,7 +428,7 @@ class AspectExtractionMixin:
         # Remove "what a/what's/what is" constructions
         text = re.sub(r'^what(\s+a|\s+an|\s+is|\'s)\s+', '', text, flags=re.IGNORECASE)
 
-        # Remove leading descriptive adjectives - EXPANDED
+        # Remove leading descriptive adjectives - 
         text = re.sub(
             r'^(great|fun|nice|good|bad|amazing|awesome|excellent|fantastic|wonderful|'
             r'terrible|horrible|awful|poor|mediocre|decent|okay|ok|fine|'
@@ -523,11 +523,11 @@ class AspectExtractionMixin:
         # Remove leading articles
         text = re.sub(r'^(a|an|the)\s+', '', text, flags=re.IGNORECASE)
 
-        # Remove leading possessives/pronouns - EXPANDED
+        # Remove leading possessives/pronouns - 
         text = re.sub(r'^(my|their|our|your|his|her|its|one of|some of|all of|most of|many of|few of|several of)\s+',
                       '', text, flags=re.IGNORECASE)
 
-        # Remove leading intensifiers + adjectives - EXPANDED
+        # Remove leading intensifiers + adjectives - 
         text = re.sub(
             r'^(very|really|so|super|quite|extremely|incredibly|unbelievably|'
             r'too|way|pretty|fairly|rather|somewhat|slightly|'
@@ -567,7 +567,7 @@ class AspectExtractionMixin:
             '', text, flags=re.IGNORECASE
         )
 
-        # Remove temporal/season descriptors - EXPANDED
+        # Remove temporal/season descriptors - 
         text = re.sub(r'^(fall|winter|spring|summer|autumn|seasonal|'
                       r'season|special|featured|rotating|limited|exclusive|'
                       r'near|nearby|close|far|distant|'
@@ -583,12 +583,12 @@ class AspectExtractionMixin:
                       r'foot|hand|finger|body)\s+', '', text,
                       flags=re.IGNORECASE)
 
-        # Remove business names - EXPANDED
+        # Remove business names - 
         text = re.sub(r'^(dairy\s+barn|sidney\s+dairy\s+barn|rewind|dripps|'
                       r'baskin\s+robbins|cold\s+stone|marble\s+slab|'
                       r'ben\s+jerry|haagen\s+dazs)\s*', '', text, flags=re.IGNORECASE)
 
-        # Remove corporate/local/vegan/artisanal descriptors - EXPANDED
+        # Remove corporate/local/vegan/artisanal descriptors - 
         text = re.sub(r'^(corporate|chain|franchise|franchised|'
                       r'local|locally|regional|national|international|'
                       r'vegan|vegetarian|non\s+vegan|non-vegan|'
@@ -601,7 +601,7 @@ class AspectExtractionMixin:
                       r'house\s+made|housemade|house-made)\s+', '',
                       text, flags=re.IGNORECASE)
 
-        # Remove price/online indicators - EXPANDED
+        # Remove price/online indicators - 
         text = re.sub(r'^(1970s|1980s|1990s|2000s|retro|vintage|classic|'
                       r'cheap|expensive|pricey|costly|affordable|reasonable|'
                       r'pricier|cheaper|budget|premium|'
@@ -729,6 +729,5 @@ class AspectExtractionMixin:
                 continue
             seen_exact.add(norm)
             final.append(a)
-
 
         return final
